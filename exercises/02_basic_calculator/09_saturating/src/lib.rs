@@ -3,6 +3,9 @@ pub fn factorial(n: u32) -> u32 {
     for i in 1..=n {
         // Use saturating multiplication to stop at the maximum value of u32
         // rather than overflowing and wrapping around
+        if (result as u64 * i as u64) > u32::MAX.into() {
+            return u32::MAX;
+        }
         result *= i;
     }
     result
